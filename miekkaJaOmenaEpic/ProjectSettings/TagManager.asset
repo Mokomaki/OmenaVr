@@ -7,6 +7,7 @@ TagManager:
   - omena
   - paaryna
   - spawner
+  - JOUTSEN
   layers:
   - Default
   - TransparentFX
