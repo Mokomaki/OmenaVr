@@ -19,7 +19,8 @@ public class posautin : MonoBehaviour
         if (otherCol.gameObject.CompareTag("omena")|| otherCol.gameObject.CompareTag("paaryna"))
         {
             spawner.DestroyApple(otherCol.gameObject,Smash);
-        }else
+        }
+        else
         if(otherCol.gameObject.CompareTag("JOUTSEN"))                       //if posautin hits a joutsen
         {
             

@@ -14,6 +14,7 @@ public class lintuspwan : MonoBehaviour
 
     void spawn()
     {
-        Instantiate(joutsen,transform.position,transform.localRotation);
+        GameObject gm = Instantiate(joutsen,transform.position,transform.localRotation);
+        Destroy(gm, 10);
     }
 }
