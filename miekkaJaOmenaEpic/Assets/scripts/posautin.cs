@@ -38,4 +38,8 @@ public class posautin : MonoBehaviour
         }
 
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        
+    }
 }
