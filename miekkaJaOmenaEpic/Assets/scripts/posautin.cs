@@ -6,6 +6,7 @@ public class posautin : MonoBehaviour
 {
     public Omena_spawner spawner;
     public bool Smash;
+    
 
     void Awake()
     {
@@ -19,6 +20,26 @@ public class posautin : MonoBehaviour
         {
             spawner.DestroyApple(otherCol.gameObject,Smash);
         }
+        else
+        if(otherCol.gameObject.CompareTag("JOUTSEN"))                       //if posautin hits a joutsen
+        {
+            
+            otherCol.gameObject.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
+            Destroy(otherCol.gameObject.GetComponentInChildren<ParticleSystem>().gameObject, 10);               //taikaa
+            for(int i = 0; i<otherCol.transform.childCount;i++)
+            {
+                if(!otherCol.transform.GetChild(i).GetComponent<ParticleSystem>())
+                {
+                    Destroy(otherCol.transform.GetChild(i).gameObject);
+                }
+            }
+            otherCol.transform.DetachChildren();
+            Destroy(otherCol.transform.gameObject);
+        }
 
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        
     }
 }
