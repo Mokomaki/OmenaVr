@@ -6,8 +6,9 @@ public class BaseballBat : MonoBehaviour
     {
         if (otherCol.gameObject.CompareTag("omena") || otherCol.gameObject.CompareTag("paaryna"))
         {
+            //Vector3 vel = otherCol.transform.GetComponent<Rigidbody>().velocity;
             otherCol.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            otherCol.transform.GetComponent<Rigidbody>().AddForce(/**/Vector3.zero/*muokkaa TÄÄÄÄÄÄÄÄ*/, ForceMode.Impulse);
+            otherCol.transform.GetComponent<Rigidbody>().AddForce(-transform.GetComponentInChildren<SpeedTracker>().Movement, ForceMode.Impulse);
         }
     }
 }
