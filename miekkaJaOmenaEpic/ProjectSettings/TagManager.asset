@@ -8,6 +8,8 @@ TagManager:
   - paaryna
   - spawner
   - JOUTSEN
+  - Terrain
+  - Bullet
   layers:
   - Default
   - TransparentFX
