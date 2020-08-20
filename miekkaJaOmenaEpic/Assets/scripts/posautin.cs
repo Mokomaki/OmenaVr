@@ -22,24 +22,32 @@ public class posautin : MonoBehaviour
         {
             //Add decal on hit
         }
-        if (otherCol.gameObject.CompareTag("omena")|| otherCol.gameObject.CompareTag("paaryna"))
+
+        if (otherCol.gameObject.CompareTag("omena") || otherCol.gameObject.CompareTag("paaryna"))
         {
-            spawner.DestroyApple(otherCol.gameObject,Smash);
+            spawner.DestroyApple(otherCol.gameObject, Smash);
         }
-        else
-        if(otherCol.gameObject.CompareTag("JOUTSEN"))                       //if posautin hits a joutsen
+        else if (otherCol.gameObject.CompareTag("JOUTSEN"))                       //if posautin hits a joutsen
         {
             otherCol.gameObject.GetComponentInChildren<ParticleSystem>(true).gameObject.SetActive(true);
             Destroy(otherCol.gameObject.GetComponentInChildren<ParticleSystem>().gameObject, 10);               //taikaa
-            for(int i = 0; i<otherCol.transform.childCount;i++)
+            for (int i = 0; i < otherCol.transform.childCount; i++)
             {
-                if(!otherCol.transform.GetChild(i).GetComponent<ParticleSystem>())
+                if (!otherCol.transform.GetChild(i).GetComponent<ParticleSystem>())
                 {
                     Destroy(otherCol.transform.GetChild(i).gameObject);
                 }
             }
             otherCol.transform.DetachChildren();
             Destroy(otherCol.transform.gameObject);
+        }
+        else if (otherCol.gameObject.CompareTag("korkki"))
+        {
+            Invoke("DisableCork", 2);
+            otherCol.transform.parent = null;
+            otherCol.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            otherCol.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            otherCol.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 2, ForceMode.Impulse);
         }
         if(gameObject.CompareTag("Bullet"))
         {
@@ -49,5 +57,14 @@ public class posautin : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         
+    }
+
+    private void DisableCork()
+    {
+        GameObject[] GMS = GameObject.FindGameObjectsWithTag("korkki");
+        for (int i = 0; i < GMS.Length; i++)
+        {
+            GMS[i].SetActive(false);
+        }
     }
 }
