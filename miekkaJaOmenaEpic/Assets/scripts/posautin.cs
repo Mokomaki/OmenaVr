@@ -18,7 +18,7 @@ public class posautin : MonoBehaviour
 
     private void OnCollisionEnter(Collision otherCol)
     {
-        if(otherCol.gameObject.CompareTag("terrain"))
+        if(otherCol.gameObject.CompareTag("Terrain"))
         {
             //Add decal on hit
         }

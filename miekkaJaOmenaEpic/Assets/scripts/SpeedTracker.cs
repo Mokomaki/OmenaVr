@@ -17,7 +17,6 @@ public class SpeedTracker : MonoBehaviour
     void Update()
     {
         Movement = (lastPos- transform.position) * Multi3D/Time.deltaTime;
-        Debug.Log(Movement);
         Speed = (Vector3.Distance(transform.position, lastPos)*Multi1D)/Time.deltaTime;
         lastPos = transform.position;
     }
