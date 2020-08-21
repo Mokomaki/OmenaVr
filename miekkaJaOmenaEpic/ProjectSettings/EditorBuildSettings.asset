@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/RistonScene.unity
+    path: Assets/_Gameplay/_Scenes/RistonScene.unity
     guid: 5970c6c04d2764f49ac7a6408477b9ba
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cc4e83b288579e14da49d7a92b68d2c7,
