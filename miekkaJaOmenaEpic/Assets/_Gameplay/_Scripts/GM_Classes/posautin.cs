@@ -61,7 +61,6 @@ public class posautin : MonoBehaviour
 
     private void DisableCork()
     {
-        GameObject[] GMS = GameObject.FindGameObjectsWithTag("korkki");
         for (int i = 0; i < GMS.Length; i++)
         {
             GMS[i].SetActive(false);
