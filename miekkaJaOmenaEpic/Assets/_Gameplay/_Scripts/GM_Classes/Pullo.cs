@@ -8,6 +8,8 @@ public class Pullo : MonoBehaviour
 
     public static bool hasCork = true;
 
+
+
     private void FixedUpdate()
     {
         if(!hasCork)

@@ -7,11 +7,12 @@ public class posautin : MonoBehaviour
 {
     public Omena_spawner spawner;
     public bool Smash;
-    
 
+    public Pullo pulloRef;
 
     void Awake()
     {
+        
         spawner = GameObject.FindGameObjectWithTag("spawner").GetComponent<Omena_spawner>();    
     }
 
@@ -61,9 +62,6 @@ public class posautin : MonoBehaviour
 
     private void DisableCork()
     {
-        for (int i = 0; i < GMS.Length; i++)
-        {
-            GMS[i].SetActive(false);
-        }
+        
     }
 }
