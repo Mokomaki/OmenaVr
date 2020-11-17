@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Pullo : MonoBehaviour
 {
-    public bool hasCork = true;
+    [SerializeField] GameObject korge;
 
-    void Update()
+    public static bool hasCork = true;
+
+
+
+    private void FixedUpdate()
     {
-                
+        if(!hasCork)
+        {
+            korge.SetActive(false);
+        }
     }
 }
