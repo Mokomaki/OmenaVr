@@ -14,6 +14,15 @@ public class WeaponHandler : MonoBehaviour
     int EQUIPPED = 500;
     public int gunIndex = 2;
 
+    public enum WeaponIndex
+    {
+
+
+    [SerializeField]    Kirves = 6,
+
+    };
+    public WeaponIndex wi;
+
     private void Update()
     {
         if(EQUIPPED==500)                   //if nothing is equipped hands are visible

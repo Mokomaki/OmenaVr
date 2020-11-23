@@ -44,7 +44,7 @@ public class posautin : MonoBehaviour
         }
         else if (otherCol.gameObject.CompareTag("korkki"))
         {
-            Invoke("DisableCork", 2);
+            Pullo.DisableCork();
             otherCol.transform.parent = null;
             otherCol.gameObject.GetComponent<Rigidbody>().useGravity = true;
             otherCol.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
@@ -56,11 +56,6 @@ public class posautin : MonoBehaviour
         }
     }
     private void OnCollisionExit(Collision collision)
-    {
-        
-    }
-
-    private void DisableCork()
     {
         
     }

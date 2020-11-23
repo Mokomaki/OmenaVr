@@ -12,9 +12,14 @@ public class Pullo : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!hasCork)
+        if(!hasCork&&!korge.activeSelf)
         {
             korge.SetActive(false);
         }
+    }
+
+    public static void DisableCork()
+    {
+        hasCork = false;
     }
 }
