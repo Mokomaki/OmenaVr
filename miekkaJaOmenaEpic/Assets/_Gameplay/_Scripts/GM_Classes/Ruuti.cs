@@ -15,7 +15,6 @@ public class Ruuti : MonoBehaviour
             {
                 if (Vector3.Distance(pistoolit[i].transform.position,transform.position)<m_threshold)
                 {
-                    Debug.Log("juuu");
                     if (StaticVariables.s_gunPowederLevel < 3) StaticVariables.s_gunPowederLevel = 3;
                     StaticVariables.s_canShoot = false;
                 }
