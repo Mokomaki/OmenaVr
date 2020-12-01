@@ -2,13 +2,14 @@
 
 public class BaseballBat : MonoBehaviour
 {
+    [SerializeField] float BounceMultiplier = 1;
     private void OnCollisionEnter(Collision otherCol)
     {
         if (otherCol.gameObject.CompareTag("omena") || otherCol.gameObject.CompareTag("paaryna"))
         {
-            //Vector3 vel = otherCol.transform.GetComponent<Rigidbody>().velocity;
-            otherCol.transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            otherCol.transform.GetComponent<Rigidbody>().AddForce(-transform.GetComponentInChildren<SpeedTracker>().Movement, ForceMode.Impulse);
+            Rigidbody rb = otherCol.transform.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+            rb.AddForce(-transform.GetComponentInChildren<SpeedTracker>().Movement*BounceMultiplier, ForceMode.Impulse);
         }
     }
 }

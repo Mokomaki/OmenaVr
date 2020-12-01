@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class bounceBack : MonoBehaviour
 {
-    public Transform respawn;
+    [SerializeField] Transform respawn;
     private void FixedUpdate()
     {
-
         if (transform.position.y < -5)
         {
             transform.position = respawn.position;
