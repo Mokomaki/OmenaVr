@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3951936766092926848}
   - component: {fileID: 5441227082909181366}
   - component: {fileID: 1783309285246277967}
+  - component: {fileID: 306989838759589600}
   m_Layer: 0
   m_Name: kivismooth
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &306989838759589600
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36943951509368211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: 8820d1680f7e30749b2bdbf3f8140560, type: 3}

@@ -7,6 +7,7 @@ public class posautin : MonoBehaviour
 {
     public Omena_spawner spawner;
     public bool Smash;
+    public GameObject decal;
 
     public Pullo pulloRef;
 
@@ -19,10 +20,6 @@ public class posautin : MonoBehaviour
 
     private void OnCollisionEnter(Collision otherCol)
     {
-        if(otherCol.gameObject.CompareTag("Terrain"))
-        {
-            //Add decal on hit
-        }
 
         if (otherCol.gameObject.CompareTag("omena") || otherCol.gameObject.CompareTag("paaryna"))
         {
@@ -52,7 +49,15 @@ public class posautin : MonoBehaviour
         }
         if(gameObject.CompareTag("Bullet"))
         {
+            if (otherCol.gameObject.isStatic)
+            {
+                GameObject dec = Instantiate(decal, otherCol.GetContact(0).point, Quaternion.identity);
+                //dec.transform.rotation = Quaternion.FromToRotation(transform.up, otherCol.GetContact(0).normal);
+                dec.transform.Translate(0, 0.01f, 0);
+                dec.GetComponent<decal>().Orient();
+            }
             Destroy(gameObject);
+
         }
     }
     private void OnCollisionExit(Collision collision)
