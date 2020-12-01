@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
-    public Transform bulletSpawn;           //declearing variables
+    public Transform bulletSpawn;
     public GameObject bullet;
     float bulletSpeed = 80;
     public GameObject hand;
     public GameObject[] weaponsHand;
     public GameObject[] weapons;
     public float grabDistance;
-    int EQUIPPED = 500;
+    int EQUIPPED = 500; // index of equipped item 500 is none 
     public int gunIndex = 2;
-
-    public enum WeaponIndex
-    {
-
-
-    [SerializeField]    Kirves = 6,
-
-    };
-    public WeaponIndex wi;
 
     private void Update()
     {
-        if(EQUIPPED==500)                   //if nothing is equipped hands are visible
+        //if nothing is equipped hands are visible
+
+        if (EQUIPPED==500)
         {
             if (!hand.activeSelf)
             {
@@ -43,12 +36,11 @@ public class WeaponHandler : MonoBehaviour
 
     public void OnTrigger()
     {
-        //Debug.Log("OnTrigger");
-        if(EQUIPPED==gunIndex)                      //if the gun is equipped
+        //if the gun is equipped shoot 
+        if (EQUIPPED==gunIndex)
         {
-            //Debug.Log("same index");
-            GameObject gm = Instantiate(bullet,bulletSpawn.transform.position,bulletSpawn.transform.rotation);      //instansiate bullet at bullet spawn location and rotation
-            gm.GetComponent<Rigidbody>().AddForce(bulletSpeed*gm.transform.forward, ForceMode.Impulse);                  //add force to bullet
+            GameObject gm = Instantiate(bullet,bulletSpawn.transform.position,bulletSpawn.transform.rotation);      
+            gm.GetComponent<Rigidbody>().AddForce(bulletSpeed*gm.transform.forward, ForceMode.Impulse);                
             Destroy(gm,3);
         }
     }
@@ -56,17 +48,20 @@ public class WeaponHandler : MonoBehaviour
     public void OnGrab()
     {
         int lowestIndex=200;                        //declare variables
-        float lowest = 100000;                      //make lowet be far away
+        float lowest = 100000;                      //make lowest be far away
 
-        for(int i = 0; i<weapons.Length;i++)        //loop through weapons on the scene
+        //loop through weapons on the scene
+        for (int i = 0; i<weapons.Length;i++)       
         {
-            if(Vector3.Distance(transform.position, weapons[i].transform.position)<lowest&&i!=EQUIPPED)         //if weapons distance is lower than the previuos distance and is not equipped
+            //find closest weapon that is not equipped
+            if (Vector3.Distance(transform.position, weapons[i].transform.position)<lowest&&i!=EQUIPPED)         
             {
-                lowest = Vector3.Distance(transform.position, weapons[i].transform.position);                   //make lowest ditance that distance
-                lowestIndex = i;                                                                                //save the index of the closest weapon
+                lowest = Vector3.Distance(transform.position, weapons[i].transform.position);                   
+                lowestIndex = i;                                                                                
             }
         }
-        if (lowest < grabDistance && weapons[lowestIndex].activeSelf)                                           //if the lowest distance is within grabbing distance and is active
+        //if the lowest distance is within grabbing distance and is active
+        if (lowest < grabDistance && weapons[lowestIndex].activeSelf)                                           
         {
             if (EQUIPPED != 500)                                                //if we have something equipped
             {
@@ -88,7 +83,8 @@ public class WeaponHandler : MonoBehaviour
             weapons[EQUIPPED].transform.position = weaponsHand[EQUIPPED].transform.position;        //set the props location to the weapons loaction
             weapons[EQUIPPED].transform.rotation = weaponsHand[EQUIPPED].transform.rotation;
             if (EQUIPPED == gunIndex)                                                               //if the prop is a gun we have to rotate it
-            {
+            { 
+                //aika nasty mutta menkööt -Risto Haila 24/11/2020
                 weapons[EQUIPPED].transform.Rotate(-90f, -90f, 0);
             }
             weapons[EQUIPPED].SetActive(true);          //activate the prop

@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.miekkajaomenaepic.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\DAT19-Risto Haila\\Documents\\softa\\unity\\UNITY_PROJ\\OmenaVR\\miekkaJaOmenaEpic\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "D:\\Documents\\Programming\\Projects\\UNITY\\OMEVAR\\miekkaJaOmenaEpic\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "miekkaJaOmenaEpic [Testing]"

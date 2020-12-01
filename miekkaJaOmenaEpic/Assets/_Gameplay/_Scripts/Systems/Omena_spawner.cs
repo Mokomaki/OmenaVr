@@ -4,46 +4,24 @@ using UnityEngine;
 
 public class Omena_spawner : MonoBehaviour
 {
-    //public List<GameObject> apples = new List<GameObject>();
-    public GameObject[] prefabs;
-    public GameObject[] OnDestroyEffect_SLICE;
-    public GameObject[] OnDestroyEffect_SMASH;
-    public Transform tynnyri;
+    [SerializeField] GameObject[] prefabs;
+    [SerializeField] GameObject[] OnDestroyEffect_SLICE;
+    [SerializeField] GameObject[] OnDestroyEffect_SMASH;
+    [SerializeField] Transform tynnyri;
+    [SerializeField] float cooldownmin = 0.7f;
+    [SerializeField] float cooldownmax = 0.7f;
+    [SerializeField] float spawnForceUPmin = 3f;
+    [SerializeField] float spawnForceUPmax = 3f;
+    [SerializeField] float spawnForceFORWARDmin = 3f;
+    [SerializeField] float spawnForceFORWARDmax = 3f;
+    [SerializeField] float duration = 7f;
+    [SerializeField] float RotationSpeed = 50f;
+    [SerializeField] float explosionDuration = 4f;
+    
     bool canSpawn = true;
-    public float cooldownmin = 0.7f;
-    public float cooldownmax = 0.7f;
-    public float spawnForceUPmin = 3f;
-    public float spawnForceUPmax = 3f;
-    public float spawnForceFORWARDmin = 3f;
-    public float spawnForceFORWARDmax = 3f;
-    public float duration = 7f;
-    public float RotationSpeed = 50f;
-    public float explosionDuration = 4f;
-
-    public float TS = 1f;
 
     void Update()
     {
-       // Debug.Log(Time.timeScale);
-        /*if(Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            TS += 0.25f;
-        }
-        if (Input.GetKeyUp(KeyCode.DownArrow)&&Time.timeScale > 0.25f)
-        {
-            TS -= 0.25f;
-        }*/
-
-
-        Time.timeScale = TS;
-        /*
-        foreach(GameObject apple in apples)
-        {
-
-            Vector3 dir = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), Random.Range(-5, 5));
-            apple.transform.Rotate(dir * RotationSpeed * Time.deltaTime);
-        }
-        */
         if (canSpawn)
         {
             StartCoroutine(SPAWN(Random.Range(cooldownmin,cooldownmax)));
@@ -52,38 +30,34 @@ public class Omena_spawner : MonoBehaviour
     IEnumerator SPAWN(float cd)
     {
         canSpawn = false;
-        GameObject obj = Instantiate(prefabs[Random.Range(0,prefabs.Length)],transform.position,transform.rotation   );
-        obj.GetComponent<Rigidbody>().AddForce((-Vector3.forward * Random.Range(spawnForceFORWARDmin,spawnForceFORWARDmax))+(Vector3.up*Random.Range(spawnForceUPmin,spawnForceUPmax)), ForceMode.Impulse);
-        //apples.Add(obj);
-        obj.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-5, 5) * RotationSpeed, Random.Range(-5, 5) * RotationSpeed, Random.Range(-5, 5) * RotationSpeed), ForceMode.Impulse);
-        //StartCoroutine(DESTROYAFTERTIME(duration,obj));
+
+        GameObject obj = Instantiate(prefabs[Random.Range(0,prefabs.Length)],transform.position,transform.rotation);
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+
+        Vector3 forwardForce = -Vector3.forward * Random.Range(spawnForceFORWARDmin, spawnForceFORWARDmax);
+        Vector3 upForce = Vector3.up * Random.Range(spawnForceUPmin, spawnForceUPmax);
+        Vector3 torqueForce = new Vector3(Random.Range(-5, 5) * RotationSpeed, Random.Range(-5, 5) * RotationSpeed, Random.Range(-5, 5) * RotationSpeed);
+
+        rb.AddForce(forwardForce + upForce, ForceMode.Impulse);
+        rb.AddTorque(torqueForce, ForceMode.Impulse);
+
         yield return new WaitForSeconds(cd);
         canSpawn = true;
-    }
-    IEnumerator DESTROYAFTERTIME(float duration,GameObject obj)
-    {
-        yield return new WaitForSeconds(duration);
-        if(obj != null)
-        {
-            //apples.Remove(obj);
-            Destroy(obj);
-        } 
     }
 
     public void DestroyApple(GameObject appleboi,bool smash)
     {
-        //apples.Remove(appleboi);
         if(smash)
         {
             if(appleboi.CompareTag("omena"))
             {
                 GameObject explo = Instantiate(OnDestroyEffect_SMASH[0], appleboi.transform.position, appleboi.transform.rotation);
-                StartCoroutine(delExp(explosionDuration, explo));
+                Destroy(explo, explosionDuration);
             }
             if (appleboi.CompareTag("paaryna"))
             {
                 GameObject explo = Instantiate(OnDestroyEffect_SMASH[1], appleboi.transform.position, appleboi.transform.rotation);
-                StartCoroutine(delExp(explosionDuration, explo));
+                Destroy(explo, explosionDuration);
             }
 
         }
@@ -97,7 +71,7 @@ public class Omena_spawner : MonoBehaviour
                 {
                     child.velocity = new Vector3(appleboi.GetComponent<Rigidbody>().velocity.x, 0/*appleboi.GetComponent<Rigidbody>().velocity.y*/,     appleboi.GetComponent<Rigidbody>().velocity.z);
                 }
-                StartCoroutine(delExp(explosionDuration, explo));
+                Destroy(explo, explosionDuration);
             }
             if (appleboi.CompareTag("paaryna"))
             {
@@ -107,20 +81,11 @@ public class Omena_spawner : MonoBehaviour
                 {
                     child.velocity = new Vector3(appleboi.GetComponent<Rigidbody>().velocity.x, 0/*appleboi.GetComponent<Rigidbody>().velocity.y*/, appleboi.GetComponent<Rigidbody>().velocity.z);
                 }
-                StartCoroutine(delExp(explosionDuration, explo));
+                Destroy(explo, explosionDuration);
             }
 
         }
 
         Destroy(appleboi);
-    }
-
-    IEnumerator delExp(float cd, GameObject obj)
-    {
-        yield return new WaitForSeconds(cd);
-
-            Destroy(obj);
-
-        
     }
 }

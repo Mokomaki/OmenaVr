@@ -9,7 +9,6 @@ public class DESTROYEROFFRUIT : MonoBehaviour
     {
         if(other.gameObject.CompareTag("omena")|| other.gameObject.CompareTag("paaryna"))
         {
-            //os.apples.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
     }
