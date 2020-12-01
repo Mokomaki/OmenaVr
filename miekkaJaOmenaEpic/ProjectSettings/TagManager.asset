@@ -11,6 +11,8 @@ TagManager:
   - Terrain
   - Bullet
   - korkki
+  - Ruuti
+  - Pistooli
   layers:
   - Default
   - TransparentFX

@@ -13,9 +13,11 @@ public class WeaponHandler : MonoBehaviour
     public float grabDistance;
     int EQUIPPED = 500; // index of equipped item 500 is none 
     public int gunIndex = 2;
+    [SerializeField] GameObject gunEffect;
 
     private void Update()
     {
+        
         //if nothing is equipped hands are visible
 
         if (EQUIPPED==500)
@@ -37,11 +39,13 @@ public class WeaponHandler : MonoBehaviour
     public void OnTrigger()
     {
         //if the gun is equipped shoot 
-        if (EQUIPPED==gunIndex)
+        if (EQUIPPED==gunIndex && StaticVariables.s_gunPowederLevel>0 && StaticVariables.s_canShoot)
         {
+            Destroy(Instantiate(gunEffect, bulletSpawn.position,bulletSpawn.rotation),2);
             GameObject gm = Instantiate(bullet,bulletSpawn.transform.position,bulletSpawn.transform.rotation);      
             gm.GetComponent<Rigidbody>().AddForce(bulletSpeed*gm.transform.forward, ForceMode.Impulse);                
             Destroy(gm,3);
+            StaticVariables.s_gunPowederLevel--;
         }
     }
 
@@ -94,4 +98,3 @@ public class WeaponHandler : MonoBehaviour
     }
 
 }
-
