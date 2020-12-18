@@ -13,6 +13,9 @@ TagManager:
   - korkki
   - Ruuti
   - Pistooli
+  - projectile
+  - FxTemporaire
+  - Water
   layers:
   - Default
   - TransparentFX
